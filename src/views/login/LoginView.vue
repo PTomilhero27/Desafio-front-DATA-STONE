@@ -1,8 +1,14 @@
 <script setup lang="ts">
   import { ref } from 'vue';
-
+  import { useRouter } from 'vue-router';
+    
   const email = ref('');
   const password = ref('');
+  const router = useRouter();
+
+  const goHome = () => {
+    router.push('/');
+  };
 </script>
 
 
@@ -20,7 +26,7 @@
             <a class="text-sm hover:text-black/70" href="#">Esqueceu a senha?</a>
           </div>
           <div class="w-full mb-4">
-            <q-btn label="Entrar" class="text-white !w-full bg-primary" />
+            <q-btn @click="goHome" label="Entrar" class="text-white !w-full bg-primary" />
           </div>
           <span class="text-sm hover:text-black/70">Não tem conta ainda ? 
             <a class="font-semibold" href="#">Cadastre-se</a>
