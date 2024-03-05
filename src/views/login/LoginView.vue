@@ -15,7 +15,7 @@
 <template>
   <div class="flex items-center lg:px-[10%] w-full max-lg:justify-center lg:justify-start min-w-screen min-h-screen">
     <div class="w-full max-w-lg px-8">
-      <div class="bg-black/30 w-full min-h-[400px] md:min-h-[500px] rounded-3xl shadow-lg px-8 flex items-center backdrop-filter backdrop-blur-sm">
+      <div class="bg-indigo-300/15 w-full min-h-[400px] md:min-h-[500px] rounded-3xl shadow-lg px-8 flex items-center backdrop-filter backdrop-blur-sm">
         <form class="w-full">
           <p class="font-bold text-2xl tracking-widest">Login</p>
           <div class="mb-4">

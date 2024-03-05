@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import HeaderView from '@/components/HeaderView.vue';
   import { useRouter } from 'vue-router';
     
   const router = useRouter();
@@ -7,10 +6,7 @@
 </script>
 
 <template>
-  <main class="w-full h-full bg-primary">
-    <HeaderView />
-    <section class="flex items-center w-full h-[calc(100vh-80px)] max-md:justify-center md:justify-between px-4 lg:px-[100px]">
-
+    <section class="flex h-full items-center max-md:justify-center md:justify-between">
       <div class="z-10 text-white  max-w-md">
         <h1 class="md:text-3xl text-lg font-bold mb-4">Sistema Integrado de Gestão de Clientes e Produtos</h1>
         <p class="mb-6 text-base">Facilite a gestão comercial com cadastros dinâmicos e associação eficiente de produtos</p>
@@ -23,5 +19,4 @@
 
       <img class="w-full absolute left-0 " src="../../assets/icons/backgound.svg" alt="Ilustração de Linhas para o fundo" />
     </section>
-  </main>
 </template>

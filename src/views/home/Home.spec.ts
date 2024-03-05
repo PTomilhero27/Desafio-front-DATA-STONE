@@ -1,7 +1,6 @@
 import { describe, it, expect, vi} from 'vitest';
 import { mount } from '@vue/test-utils';
 import HomeView from './HomeView.vue';
-import HeaderView from '../../components/HeaderView.vue';
 import { Quasar } from 'quasar'; 
 
 import { createRouter, createWebHistory } from 'vue-router';
@@ -20,12 +19,6 @@ describe('HomeView', () => {
       },
     });
     expect(wrapper.exists()).toBeTruthy();
-  });
-  
-  it('renderiza o componente HeaderView', () => {
-    const wrapper = mount(HomeView, { global: { plugins: [Quasar] } });
-    const header = wrapper.findComponent(HeaderView);
-    expect(header.exists()).toBe(true);
   });
 
   it('exibe o título e o parágrafo corretamente', () => {
