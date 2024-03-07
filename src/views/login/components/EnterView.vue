@@ -1,13 +1,53 @@
 <script setup lang="ts">
+import { useCreate } from '@/services/query'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import type { Login } from '../models/login-user'
+import { Notify } from 'quasar'
+
+const { mutate } = useCreate<Login>({ url: 'login' })
 
 const email = ref('')
 const password = ref('')
 const router = useRouter()
 
-const goHome = () => {
-  router.push('/')
+const login = () => {
+  if (email.value.length > 5 && password.value.length > 5) {
+    const json: any = {
+      email: email.value,
+      password: password.value
+    }
+    mutate(
+      { json },
+      {
+        onSuccess: () => {
+          router.push('/')
+        },
+        onError: (error: any) => {
+          if (error.response) {
+            error.response.json().then((erroBody: any) => {
+              let currentError = erroBody.message
+
+              Notify.create({
+                type: 'negative',
+                message: currentError
+              })
+            })
+          } else {
+            Notify.create({
+              type: 'negative',
+              message: 'Ocorreu um erro inesperado.'
+            })
+          }
+        }
+      }
+    )
+  } else {
+    Notify.create({
+      type: 'negative',
+      message: 'Email ou senha invalido.'
+    })
+  }
 }
 </script>
 
@@ -35,7 +75,7 @@ const goHome = () => {
       <a class="text-sm hover:text-black/70" href="#">Esqueceu a senha?</a>
     </div>
     <div class="w-full mb-4">
-      <q-btn @click="goHome" label="Entrar" class="text-white !w-full bg-primary" />
+      <q-btn @click="login" label="Entrar" class="text-white !w-full bg-primary" />
     </div>
     <span class="text-sm hover:text-black/70"
       >Não tem conta ainda ?
