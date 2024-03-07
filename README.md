@@ -1,68 +1,52 @@
-# ProdClienteLink
+<p align="center">
+  <a target="blank"><img src="https://vue3/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+</p>
 
-This template should help get you started developing with Vue 3 in Vite.
+<p align="center">
+  Uma API de cadastro de clientes e produtos construída com <a href="http://nodejs.org" target="_blank">Node.js</a> utilizando NestJS, Prisma e MySQL.
+</p>
 
-## Recommended IDE Setup
+## Descrição
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Este repositório é o ponto de partida para criar uma API utilizando o framework NestJS com Prisma ORM para a manipulação de dados de um banco de dados MySQL.
 
-## Type Support for `.vue` Imports in TS
+## Instalação
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+Instale as dependências do projeto com o comando:
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-pnpm install
+```
+$ pnpm install
 ```
 
-### Compile and Hot-Reload for Development
 
-```sh
-pnpm dev
+## Configuração do Banco de Dados
+Certifique-se de criar uma conexão de banco de dados MySQL chamada ProdLink e modificar o arquivo .env com suas credenciais de acesso.
+
+```
+DATABASE_URL="mysql://root:SUA_SENHA@localhost:3306/ProdLink"
 ```
 
-### Type-Check, Compile and Minify for Production
+## Executando a Aplicação
+Para gerar e aplicar migrações do banco de dados, execute:
 
-```sh
-pnpm build
+```
+$ npx prisma generate
+$ npx prisma migrate dev
+
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+Para executar a aplicação em modo de desenvolvimento, use:
 
-```sh
-pnpm test:unit
+```
+$ pnpm run start:dev
 ```
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
 
-```sh
-pnpm test:e2e:dev
-```
 
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
 
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
 
-```sh
-pnpm build
-pnpm test:e2e
-```
 
-### Lint with [ESLint](https://eslint.org/)
 
-```sh
-pnpm lint
-```
+
+
+
