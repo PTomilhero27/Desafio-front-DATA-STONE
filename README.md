@@ -1,14 +1,15 @@
 <p align="center">
-  <a target="blank"><img src="https://vue3/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <a target="blank"><img src="https://vue3openlayers.netlify.app/logo.png" width="200" alt="Nest Logo" /></a>
 </p>
 
 <p align="center">
-  Uma API de cadastro de clientes e produtos construída com <a href="http://nodejs.org" target="_blank">Node.js</a> utilizando NestJS, Prisma e MySQL.
+  Este projeto exemplifica a integração harmoniosa do Vue 3 com o framework Quasar para uma interface de usuário rica e responsiva, aproveitando o Tailwind CSS para um design customizável e moderno. Além disso, utiliza a biblioteca Ky para gerenciamento eficiente de requisições HTTP, assegurando uma comunicação ágil e segura com os serviços back-end.
 </p>
+
 
 ## Descrição
 
-Este repositório é o ponto de partida para criar uma API utilizando o framework NestJS com Prisma ORM para a manipulação de dados de um banco de dados MySQL.
+Este repositório serve como uma base sólida para o desenvolvimento de um site dinâmico utilizando Vue 3, focado em funcionalidades essenciais para gestão de negócios, incluindo o cadastro de clientes e produtos. O projeto inclui uma interface de login segura, além de incorporar modais elegantes para interações intuitivas. A arquitetura do site é projetada com conceitos inovadores para garantir uma experiência de usuário fluída e moderna, adequada para atender às demandas atuais do mercado digital.
 
 ## Instalação
 
@@ -18,32 +19,19 @@ Instale as dependências do projeto com o comando:
 $ pnpm install
 ```
 
+## versão 
 
-## Configuração do Banco de Dados
-Certifique-se de criar uma conexão de banco de dados MySQL chamada ProdLink e modificar o arquivo .env com suas credenciais de acesso.
-
-```
-DATABASE_URL="mysql://root:SUA_SENHA@localhost:3306/ProdLink"
-```
-
-## Executando a Aplicação
-Para gerar e aplicar migrações do banco de dados, execute:
+Versões instaladas:
 
 ```
-$ npx prisma generate
-$ npx prisma migrate dev
-
-```
-
-Para executar a aplicação em modo de desenvolvimento, use:
-
-```
-$ pnpm run start:dev
+$ node 20.9.0
+$ pnpm 8.15.4
 ```
 
 
+# link para o back-end
 
-
+[Acesse nosso projeto no GitHub](https://github.com/PTomilhero27/prod-link)
 
 
 
