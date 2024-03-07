@@ -3,6 +3,7 @@ import type { RouteRecordRaw } from 'vue-router'
 
 import MainLayout from '../views/MainLayout.vue'
 import { defineAsyncComponent } from 'vue'
+import { useUserStore } from '@/stores/user'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -42,6 +43,16 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const userStore = useUserStore()
+
+  if (to.name !== 'login' && !userStore.userData?.id) {
+    next({ name: 'login' })
+  } else {
+    next()
+  }
 })
 
 export default router

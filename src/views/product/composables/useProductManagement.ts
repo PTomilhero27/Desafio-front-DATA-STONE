@@ -1,10 +1,13 @@
 // composables/useProductManagement.ts
-import { ref } from 'vue'
+import { useUserStore } from '@/stores/user'
+import { onMounted, ref, watch } from 'vue'
 
 export function useProductManagement() {
   const isOpen = ref(false)
   const openForm = ref(false)
   const edit = ref({})
+  const userStore = useUserStore()
+  const userProducts: any = ref([])
 
   function cancelDelete() {
     console.log('cancelou')
@@ -28,5 +31,44 @@ export function useProductManagement() {
 
   const handleDelete = () => (isOpen.value = true)
 
-  return { isOpen, openForm, edit, cancelDelete, deleteProduct, editSelected, cancelForm, handleDelete }
+  function loadUserProducts() {
+    // Verifica se o usuário está logado e tem produtos
+    if (userStore.userData?.products) {
+      userProducts.value = userStore.userData.products.map((product) => ({
+        id: product.id,
+        productName: product.name,
+        clientName: userStore.userData?.name,
+        clientDocument: userStore.userData?.document,
+        active: product.isActive,
+        action: []
+      }))
+    } else {
+      userProducts.value = []
+    }
+  }
+
+  onMounted(loadUserProducts)
+
+  watch(
+    () => userStore.userData,
+    (newUserData) => {
+      loadUserProducts()
+    },
+    {
+      deep: true
+    }
+  )
+
+  return {
+    isOpen,
+    openForm,
+    edit,
+    userProducts,
+    cancelDelete,
+    deleteProduct,
+    editSelected,
+    cancelForm,
+    handleDelete,
+    loadUserProducts
+  }
 }

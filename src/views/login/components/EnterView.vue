@@ -4,12 +4,14 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import type { Login } from '../models/login-user'
 import { Notify } from 'quasar'
+import { useUserStore } from '../../../stores/user'
 
 const { mutate } = useCreate<Login>({ url: 'login' })
 
 const email = ref('')
 const password = ref('')
 const router = useRouter()
+const userStore = useUserStore()
 
 const login = () => {
   if (email.value.length > 5 && password.value.length > 5) {
@@ -20,8 +22,9 @@ const login = () => {
     mutate(
       { json },
       {
-        onSuccess: () => {
+        onSuccess: (response: any) => {
           router.push('/')
+          userStore.setUser(response)
         },
         onError: (error: any) => {
           if (error.response) {

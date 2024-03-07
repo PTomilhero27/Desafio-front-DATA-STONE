@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
-import { QCard, QCardSection, QForm, QInput, QToggle, QBtn } from 'quasar'
+import { QCard, QCardSection, QForm, QInput, QToggle, QBtn, Notify } from 'quasar'
+import { useCreate, useEdit } from '@/services/query'
+import { useUserStore } from '@/stores/user'
 
 const props = defineProps({
   isOpen: Boolean,
@@ -12,6 +14,10 @@ const props = defineProps({
   }
 })
 
+const { mutate } = useCreate({ url: 'products' })
+const { mutate: mutateEdit } = useEdit({ url: 'products' })
+const userStore = useUserStore()
+
 const initialValueForm = {
   name: '',
   active: false
@@ -19,7 +25,6 @@ const initialValueForm = {
 
 const product = ref({ ...initialValueForm })
 
-// Inicializa o formulário com os dados de edit quando eles existem
 watchEffect(() => {
   if (props.edit && props.edit.id) {
     console.log(props.edit)
@@ -40,7 +45,73 @@ const onCancel = () => {
 }
 
 const onSubmit = () => {
-  console.log('Produto a ser cadastrado:', props.edit)
+  const json = {
+    name: product.value.name,
+    isActive: product.value.active,
+    clientId: userStore.userData?.id
+  }
+
+  if (props.edit && props.edit.id) {
+    mutateEdit(
+      { json, id: props.edit.id },
+      {
+        onSuccess: (response: any) => {
+          Notify.create({
+            type: 'positive',
+            message: 'Produto cadastrado com sucesso!'
+          })
+          userStore.setUser(response)
+        },
+        onError: (error: any) => {
+          if (error.response) {
+            error.response.json().then((erroBody: any) => {
+              let currentError = erroBody.message
+
+              Notify.create({
+                type: 'negative',
+                message: currentError
+              })
+            })
+          } else {
+            Notify.create({
+              type: 'negative',
+              message: 'Ocorreu um erro inesperado.'
+            })
+          }
+        }
+      }
+    )
+  } else {
+    mutate(
+      { json },
+      {
+        onSuccess: (response: any) => {
+          Notify.create({
+            type: 'positive',
+            message: 'Produto cadastrado com sucesso!'
+          })
+          userStore.setUser(response)
+        },
+        onError: (error: any) => {
+          if (error.response) {
+            error.response.json().then((erroBody: any) => {
+              let currentError = erroBody.message
+
+              Notify.create({
+                type: 'negative',
+                message: currentError
+              })
+            })
+          } else {
+            Notify.create({
+              type: 'negative',
+              message: 'Ocorreu um erro inesperado.'
+            })
+          }
+        }
+      }
+    )
+  }
   onCancel()
 }
 </script>

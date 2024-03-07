@@ -1,4 +1,4 @@
-import type { GetAllProps, CreateProps } from './models/services'
+import type { GetAllProps, CreateProps, EditProps } from './models/services'
 import { apiProdLink } from '@/lib/ky'
 
 export const prodLinkService = {
@@ -20,6 +20,15 @@ export const prodLinkService = {
 
     const data: T = await response.json()
 
+    return data
+  },
+
+  async edit<T>({ url, json, id }: EditProps): Promise<T> {
+    const response = await apiProdLink.patch(`${url}/${id}`, {
+      json
+    })
+
+    const data: T = await response.json()
     return data
   }
 }
