@@ -29,10 +29,10 @@ $ pnpm 8.15.4
 ```
 
 
-# link para o back-end
+# link para o back-end e o figma
 
 [Acesse nosso projeto no GitHub](https://github.com/PTomilhero27/prod-link)
-
+[Acesse nosso projeto no Figma](https://www.figma.com/file/iECKAtXBeDZKIIo0khLOpA/Data-Stone?type=design&node-id=0%3A1&mode=dev&t=VXtjJYSlgbpSWx04-1)
 
 
 
