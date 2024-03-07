@@ -1,4 +1,3 @@
-import { VueQueryPlugin } from '@tanstack/vue-query'
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
@@ -11,7 +10,6 @@ export default defineConfig({
     vue({
       template: { transformAssetUrls }
     }),
-    VueQueryPlugin({}),
     vueJsx(),
     quasar({
       sassVariables: './src/quasar-variables.sass'

@@ -11,14 +11,14 @@ const {
   deleteProduct,
   editSelected,
   cancelForm,
-  handleDelete
+  userProducts
 } = useProductManagement()
 
 import { QInput, QTable, QTd } from 'quasar'
-import { columnsProduct, originalRowsProduct } from './models/TableModel'
+import { columnsProduct } from './models/TableModel'
 import { ref } from 'vue'
 const search = ref('')
-const rows = ref(originalRowsProduct)
+const rows = userProducts
 </script>
 
 <template>
@@ -69,9 +69,6 @@ const rows = ref(originalRowsProduct)
               <q-list>
                 <q-item clickable v-close-popup @click="editSelected(props.row)">
                   <q-item-section>Editar</q-item-section>
-                </q-item>
-                <q-item clickable v-close-popup @click="handleDelete">
-                  <q-item-section>Excluir</q-item-section>
                 </q-item>
               </q-list>
             </q-menu>
